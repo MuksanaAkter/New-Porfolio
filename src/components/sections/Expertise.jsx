@@ -25,7 +25,7 @@ const capabilities = [
 ];
 
 const Expertise = () => (
-  <section className="section-padding max-w-7xl mx-auto relative z-0">
+  <section className="section-padding section-wash section-wash--mint max-w-7xl mx-auto relative z-0">
     <div className="mb-8 flex items-end justify-between gap-6">
       <div>
         <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-accent">What I do</p>

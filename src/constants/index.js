@@ -36,6 +36,14 @@ export const EXPERIENCES = [
     ],
   },
   {
+    title: "Junior Developer",
+    company_name: "XIIA",
+    date: "First year · 12 months",
+    points: [
+      "Started at XIIA as a Junior Developer, contributing to feature development and growing into broader product responsibilities.",
+    ],
+  },
+  {
     title: "Software Development Intern",
     company_name: "Syntheim, India",
     date: "January 2024 - June 2024",

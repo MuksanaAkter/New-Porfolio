@@ -14,11 +14,10 @@ const App = () => {
   return (
     <div className="relative z-0 bg-bg-primary transition-colors duration-300 w-full min-h-screen flex flex-col">
       <CustomCursor />
-      
       <div className="page-backdrop fixed inset-0 -z-10 pointer-events-none" aria-hidden="true" />
 
       <Navbar />
-      
+
       <main className="grow w-full flex flex-col items-center">
         <Hero />
         <Expertise />

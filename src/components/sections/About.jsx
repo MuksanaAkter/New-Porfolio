@@ -5,7 +5,7 @@ import CoderIllustration from '../CoderIllustration';
 
 const About = () => {
   return (
-    <section id="about" className="section-padding relative z-0 mx-auto max-w-7xl">
+    <section id="about" className="section-padding section-wash section-wash--peach relative z-0 mx-auto max-w-7xl">
       <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

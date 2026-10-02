@@ -58,13 +58,33 @@ body {
 }
 
 .page-backdrop {
-  background-image:
-    linear-gradient(to right, color-mix(in srgb, var(--accent) 4%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in srgb, var(--accent) 4%, transparent) 1px, transparent 1px),
-    linear-gradient(145deg, color-mix(in srgb, var(--accent) 7%, transparent), transparent 40%);
-  background-size: 72px 72px, 72px 72px, 100% 100%;
-  mask-image: linear-gradient(to bottom, black, transparent 82%);
-  opacity: 0.45;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 8%, transparent), transparent 42%), linear-gradient(330deg, color-mix(in srgb, #e59c72 6%, transparent), transparent 50%);
+  opacity: 0.7;
+}
+
+.section-wash {
+  isolation: isolate;
+}
+
+.section-wash::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0 calc((100vw - 100%)/-2);
+  content: '';
+  pointer-events: none;
+  opacity: .48;
+}
+
+.section-wash--mint::before {
+  background: linear-gradient(110deg, color-mix(in srgb, #4fb79b 12%, transparent), transparent 68%);
+}
+
+.section-wash--peach::before {
+  background: linear-gradient(250deg, color-mix(in srgb, #e69b72 11%, transparent), transparent 72%);
+}
+
+.section-wash--blue::before {
+  background: linear-gradient(105deg, color-mix(in srgb, #7096cf 10%, transparent), transparent 74%);
 }
 
 * {
@@ -153,15 +173,6 @@ a, button {
   --scene-accent: #e28c68;
   --scene-paper: #f1e3d5;
   aspect-ratio: 1.24;
-}
-
-.coder-scene__grid {
-  position: absolute;
-  inset: 0;
-  opacity: 0.34;
-  background-image: linear-gradient(to right, color-mix(in srgb, var(--text-primary) 7%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in srgb, var(--text-primary) 7%, transparent) 1px, transparent 1px);
-  background-size: 42px 42px;
-  mask-image: radial-gradient(ellipse at center, black, transparent 78%);
 }
 
 .coder-scene__sun {

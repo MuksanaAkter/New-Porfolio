@@ -62,7 +62,7 @@ const ProjectCard = ({ index, name, description, tags, source_code_link }) => {
 
 const Projects = () => {
   return (
-    <section id="projects" className="section-padding max-w-7xl mx-auto">
+    <section id="projects" className="section-padding section-wash section-wash--peach max-w-7xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

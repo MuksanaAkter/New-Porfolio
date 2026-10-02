@@ -15,7 +15,6 @@ const CoderIllustration = ({ variant = 'hero' }) => {
       role="img"
       aria-label="Illustration of a developer working at a laptop"
     >
-      <div className="coder-scene__grid" />
       <div className="coder-scene__sun" />
       <motion.div
         className="coder-scene__float coder-scene__float--code"
