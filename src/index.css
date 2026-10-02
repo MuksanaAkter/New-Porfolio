@@ -95,6 +95,26 @@ body {
   background: linear-gradient(105deg, color-mix(in srgb, #7096cf 10%, transparent), transparent 74%);
 }
 
+.section-wash--lilac::before {
+  background: linear-gradient(115deg, color-mix(in srgb, #ae8cdc 10%, transparent), transparent 73%);
+}
+
+.section-wash--teal::before {
+  background: linear-gradient(250deg, color-mix(in srgb, #44aa9b 11%, transparent), transparent 74%);
+}
+
+.section-wash--amber::before {
+  background: linear-gradient(105deg, color-mix(in srgb, #e0ad57 10%, transparent), transparent 72%);
+}
+
+.section-wash--opaque::before {
+  background:
+    radial-gradient(ellipse at 12% 18%, color-mix(in srgb, #dbeafe 34%, var(--bg-primary)), transparent 52%),
+    radial-gradient(ellipse at 88% 82%, color-mix(in srgb, #d1fae5 38%, var(--bg-primary)), transparent 58%),
+    linear-gradient(112deg, color-mix(in srgb, var(--bg-primary) 96%, #dbeafe), color-mix(in srgb, var(--bg-primary) 94%, #d1fae5));
+  opacity: 1;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -483,6 +503,27 @@ a, button {
   transform: scale(1.15);
 }
 
+.expertise-card::after {
+  position: absolute;
+  z-index: 2;
+  inset: -1px;
+  padding: 1px;
+  content: '';
+  pointer-events: none;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, transparent 0deg 270deg, color-mix(in srgb, var(--accent) 25%, transparent) 300deg, var(--accent) 326deg, color-mix(in srgb, #8ee4c2 75%, white) 340deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: card-orbit 5s linear infinite;
+  animation-delay: var(--card-scan-delay, 0s);
+  opacity: .9;
+}
+
+@keyframes card-orbit {
+  to { transform: rotate(1turn); }
+}
+
 .site-footer {
   overflow: hidden;
   background: color-mix(in srgb, var(--bg-secondary) 72%, #101f22);
@@ -665,6 +706,8 @@ a, button {
 @media (prefers-reduced-motion: reduce) {
   .project-preview,
   .project-preview__browser { transition: none; }
+
+  .expertise-card::after { animation: none; }
 
   .skill-marquee__viewport { overflow: visible; mask-image: none; }
   .skill-marquee__track { width: 100%; animation: none; flex-wrap: wrap; }

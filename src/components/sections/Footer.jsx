@@ -51,13 +51,16 @@ const Footer = () => {
             </motion.a>
           </motion.div>
 
-          <div className="site-footer__rule relative z-10 mx-auto mt-12 flex max-w-7xl flex-col gap-5 border-t border-white/15 pt-5 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
+          <motion.div
+            {...scrollReveal(0.12, 14)}
+            className="site-footer__rule relative z-10 mx-auto mt-12 flex max-w-7xl flex-col gap-5 border-t border-white/15 pt-5 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between"
+          >
             <a href={`mailto:${PERSONAL_INFO.email}`} className="transition-colors hover:text-white">{PERSONAL_INFO.email}</a>
             <div className="flex items-center gap-5">
               <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="transition-colors hover:text-white">GitHub ↗</a>
               <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="transition-colors hover:text-white">LinkedIn ↗</a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 

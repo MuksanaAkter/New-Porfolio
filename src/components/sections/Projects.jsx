@@ -60,7 +60,7 @@ const ProjectCard = ({ index, name, description, tags, source_code_link }) => {
 
 const Projects = () => {
   return (
-    <section id="projects" className="section-padding section-wash section-wash--peach max-w-7xl mx-auto">
+    <section id="projects" className="section-padding section-wash section-wash--teal max-w-7xl mx-auto">
       <motion.div
         {...scrollReveal(0, 22)}
         className="mb-12 flex flex-col items-center text-center"

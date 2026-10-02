@@ -44,7 +44,7 @@ const ExperienceCard = ({ experience, index, isLast }) => (
 
 const Experience = () => {
   return (
-    <section id="experience" className="section-padding section-wash section-wash--blue max-w-7xl mx-auto relative z-0">
+    <section id="experience" className="section-padding section-wash section-wash--lilac max-w-7xl mx-auto relative z-0">
       <motion.div
         {...scrollReveal(0, 20)}
         className="mb-12 flex flex-col items-center text-center"

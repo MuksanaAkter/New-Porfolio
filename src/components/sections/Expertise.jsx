@@ -26,7 +26,7 @@ const capabilities = [
 ];
 
 const Expertise = () => (
-  <section className="section-padding section-wash section-wash--mint max-w-7xl mx-auto relative z-0">
+  <section className="section-padding section-wash section-wash--mint section-wash--opaque max-w-7xl mx-auto relative z-0">
     <motion.div
       {...scrollReveal(0, 18)}
       className="mb-8 flex items-end justify-between gap-6"
@@ -44,7 +44,8 @@ const Expertise = () => (
           key={capability.number}
           {...scrollReveal(index * 0.08, 22)}
           whileHover={{ y: -6, scale: 1.015 }}
-          className="hover-surface group relative min-h-52 overflow-hidden rounded-lg border border-bg-tertiary bg-bg-secondary/60 p-5 transition-colors duration-300 sm:p-6"
+          style={{ '--card-scan-delay': `${index * 1.15}s` }}
+          className="expertise-card hover-surface group relative min-h-52 overflow-hidden rounded-lg border border-bg-tertiary bg-bg-secondary/60 p-5 transition-colors duration-300 sm:p-6"
         >
           <div className="mb-8 flex items-center justify-between">
             <span className="text-xs font-bold tabular-nums text-accent">{capability.number}</span>
