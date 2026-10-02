@@ -1,4 +1,5 @@
 export const NAV_LINKS = [
+  { id: "hero", title: "Home" },
   { id: "about", title: "About" },
   { id: "skills", title: "Skills" },
   { id: "experience", title: "Experience" },
@@ -40,7 +41,7 @@ export const EXPERIENCES = [
     company_name: "XIIA",
     date: "First year · 12 months",
     points: [
-      "Started at XIIA as a Junior Developer, contributing to feature development and growing into broader product responsibilities.",
+      "Spent my first year at XIIA as a Junior Developer, contributing to product features, learning the team's workflow, and growing into broader development responsibilities.",
     ],
   },
   {

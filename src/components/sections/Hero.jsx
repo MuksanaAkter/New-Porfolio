@@ -5,7 +5,7 @@ import CoderIllustration from '../CoderIllustration';
 
 const Hero = () => {
   return (
-    <section id="hero" className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden">
+    <section id="hero" className="relative flex min-h-svh w-full items-center justify-center overflow-hidden">
       <div className="section-padding relative z-10 mx-auto grid w-full max-w-7xl items-center gap-8 pt-28 sm:gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-4 lg:pt-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -19,7 +19,7 @@ const Hero = () => {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="flex items-center gap-4 mb-4"
           >
-            <div className="w-12 h-[2px] bg-accent"></div>
+            <div className="w-12 h-0.5 bg-accent"></div>
             <p className="text-accent font-semibold tracking-widest uppercase text-sm md:text-base">
               Portfolio
             </p>
@@ -54,7 +54,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.96, x: 16 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto w-full max-w-[31rem] lg:max-w-none"
+          className="mx-auto w-full max-w-124 lg:max-w-none"
         >
           <CoderIllustration variant="hero" />
         </motion.div>
@@ -69,7 +69,7 @@ const Hero = () => {
       >
         <span className="text-xs text-text-secondary uppercase tracking-widest font-semibold">Scroll</span>
         <a href="#experience">
-          <div className="w-[30px] h-[50px] rounded-3xl border-2 border-text-secondary/30 flex justify-center items-start p-2 cursor-pointer hover:border-accent transition-colors">
+          <div className="w-7.5 h-12.5 rounded-3xl border-2 border-text-secondary/30 flex justify-center items-start p-2 cursor-pointer hover:border-accent transition-colors">
             <motion.div
               animate={{
                 y: [0, 16, 0],

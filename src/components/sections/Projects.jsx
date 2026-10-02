@@ -2,17 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { PROJECTS } from '../../constants';
 import ProjectPreview from '../ProjectPreview';
+import { scrollReveal } from '../../utils/scrollReveal';
 
 const ProjectCard = ({ index, name, description, tags, source_code_link }) => {
   const isEven = index % 2 === 0;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      {...scrollReveal(index * 0.1, 30)}
       whileHover={{ y: -3 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      viewport={{ once: true, margin: "-100px" }}
       className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-12 items-center w-full`}
     >
       {/* Project Info (Text Side) */}
@@ -64,10 +62,7 @@ const Projects = () => {
   return (
     <section id="projects" className="section-padding section-wash section-wash--peach max-w-7xl mx-auto">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        viewport={{ once: true }}
+        {...scrollReveal(0, 22)}
         className="mb-12 flex flex-col items-center text-center"
       >
         <div className="flex items-center gap-4 mb-6">

@@ -1,41 +1,61 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { SKILLS } from '../../constants';
+import { scrollReveal } from '../../utils/scrollReveal';
 
 const Skills = () => (
-  <section id="skills" className="section-padding max-w-7xl mx-auto relative z-0">
-    <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+  <section id="skills" className="section-padding section-wash section-wash--blue relative z-0 mx-auto w-full max-w-7xl">
+    <motion.div
+      {...scrollReveal(0, 18)}
+      className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"
+    >
       <div>
-        <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-accent">Tools I work with</p>
+        <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-accent">A toolkit in motion</p>
         <h2 className="text-4xl font-black tracking-tight text-text-primary md:text-5xl">Skills & technologies</h2>
       </div>
-      <p className="max-w-sm text-sm leading-relaxed text-text-secondary">A practical toolkit for building and shipping web and mobile products.</p>
-    </div>
+      <p className="max-w-sm text-sm leading-relaxed text-text-secondary">The tools I use to shape thoughtful web and mobile products.</p>
+    </motion.div>
 
-    <div className="grid gap-3 sm:grid-cols-2">
-      {Object.entries(SKILLS).map(([category, skills], index) => (
-        <motion.article
-          key={category}
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          whileHover={{ y: -5, scale: 1.01 }}
-          transition={{ duration: 0.3, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true, amount: 0.2 }}
-          className="hover-surface group relative overflow-hidden rounded-lg border border-bg-tertiary bg-bg-secondary/50 p-5 transition-colors duration-300 sm:p-6"
-        >
-          <div className="relative z-10 mb-5 flex items-center justify-between border-b border-bg-tertiary pb-4">
-            <h3 className="font-bold text-text-primary">{category}</h3>
-            <span className="text-xs font-semibold tabular-nums text-accent">0{index + 1}</span>
-          </div>
-          <div className="relative z-10 flex flex-wrap gap-2">
-            {skills.map((skill) => (
-              <motion.span key={skill} whileHover={{ y: -2 }} className="rounded-md border border-bg-tertiary bg-bg-primary/40 px-3 py-2 text-sm text-text-secondary transition-colors duration-200 hover:border-accent/50 hover:bg-accent/10 hover:text-text-primary">
-                {skill}
-              </motion.span>
-            ))}
-          </div>
-        </motion.article>
-      ))}
+    <div className="skill-marquee-list">
+      {Object.entries(SKILLS).map(([category, skills], index) => {
+        const duration = 21 + index * 2;
+
+        return (
+          <motion.div
+            key={category}
+            {...scrollReveal(index * 0.08, 18)}
+            className="skill-marquee-row"
+          >
+            <div className="skill-marquee__category">
+              <span>0{index + 1}</span>
+              <h3>{category}</h3>
+            </div>
+            <div className="skill-marquee__viewport" aria-label={`${category} skills`}>
+              <div
+                className={`skill-marquee__track ${index % 2 ? 'skill-marquee__track--reverse' : ''}`}
+                style={{ '--marquee-duration': `${duration}s` }}
+              >
+                {[0, 1].map((copy) => (
+                  <div className="skill-marquee__group" aria-hidden={copy === 1} key={`${category}-${copy}`}>
+                    {skills.map((skill, skillIndex) => (
+                      <motion.span
+                        key={`${skill}-${skillIndex}`}
+                        whileHover={{ y: -3, scale: 1.045 }}
+                        transition={{ duration: 0.2, ease: 'easeOut' }}
+                        className="skill-marquee__chip"
+                        style={{ '--skill-hue': (skillIndex * 47 + index * 31 + 20) % 360 }}
+                      >
+                        <span className="skill-marquee__monogram" aria-hidden="true">{skill.slice(0, 1)}</span>
+                        {skill}
+                      </motion.span>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        );
+      })}
     </div>
   </section>
 );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { PERSONAL_INFO } from '../../constants';
+import { scrollReveal } from '../../utils/scrollReveal';
 
 const currentYear = new Date().getFullYear();
 
@@ -8,7 +9,7 @@ const Footer = () => {
   const reduceMotion = useReducedMotion();
 
   return (
-    <footer className="site-footer w-full">
+    <footer className="site-footer relative z-10 w-full">
       <div className="site-footer__cta relative w-full overflow-hidden px-5 py-14 sm:px-8 sm:py-20 lg:px-12">
         <motion.div
           className="site-footer__scanline"
@@ -18,7 +19,10 @@ const Footer = () => {
         />
 
         <div className="mx-auto max-w-7xl">
-          <div className="site-footer__content relative z-10 grid items-end gap-10 md:grid-cols-[1fr_auto]">
+          <motion.div
+            {...scrollReveal(0, 24)}
+            className="site-footer__content relative z-10 grid items-end gap-10 md:grid-cols-[1fr_auto]"
+          >
             <div>
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
@@ -45,7 +49,7 @@ const Footer = () => {
               <span>Let’s talk</span>
               <span className="site-footer__arrow grid size-9 place-items-center rounded-full bg-zinc-950 text-white transition-transform duration-300 group-hover:rotate-45" aria-hidden="true">↗</span>
             </motion.a>
-          </div>
+          </motion.div>
 
           <div className="site-footer__rule relative z-10 mx-auto mt-12 flex max-w-7xl flex-col gap-5 border-t border-white/15 pt-5 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
             <a href={`mailto:${PERSONAL_INFO.email}`} className="transition-colors hover:text-white">{PERSONAL_INFO.email}</a>

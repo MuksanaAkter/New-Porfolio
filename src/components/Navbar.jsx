@@ -1,49 +1,50 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NAV_LINKS, PERSONAL_INFO } from '../constants';
 import ThemeToggle from './ThemeToggle';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState('');
   const [toggle, setToggle] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious();
-    if (latest > 100 && latest > previous) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
-  });
+  useEffect(() => {
+    const sections = NAV_LINKS
+      .map(({ id }) => document.getElementById(id))
+      .filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      const current = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
+
+      if (current) setActive(current.target.id);
+    }, {
+      rootMargin: '-35% 0px -55% 0px',
+      threshold: [0, 0.1, 0.25, 0.5],
+    });
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <motion.nav 
-      variants={{
-        visible: { y: 0, opacity: 1 },
-        hidden: { y: "-100%", opacity: 0 },
-      }}
-      initial="visible"
-      animate={hidden ? "hidden" : "visible"}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+    <motion.nav
+      initial={{ opacity: 0, y: -12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="w-full flex items-center py-2.5 sm:py-3 fixed top-0 z-50 transition-colors duration-300 px-4 sm:px-8"
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto glass rounded-full px-4 sm:px-6 py-2 sm:py-2.5 shadow-lg relative">
         <a 
-          href="/" 
+          href="#hero"
+          aria-label={`${PERSONAL_INFO.name}, back to top`}
           className="flex items-center gap-2.5 group"
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}
         >
           <motion.div 
             whileHover={{ rotate: 360 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="w-9 h-9 rounded-full bg-gradient-to-r from-accent to-purple-500 flex items-center justify-center text-white font-black text-lg shadow-md"
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-linear-to-br from-accent to-emerald-500 text-xs font-black tracking-wide text-white shadow-md"
           >
-            {PERSONAL_INFO.name.charAt(0)}
+            {PERSONAL_INFO.name.split(' ').map((part) => part[0]).join('')}
           </motion.div>
           <p className="text-text-primary text-sm sm:text-[18px] font-bold cursor-pointer tracking-tight group-hover:text-accent transition-colors duration-300">
             {PERSONAL_INFO.name.split(' ')[0]}
@@ -55,18 +56,22 @@ const Navbar = () => {
             <li
               key={nav.id}
               className="relative group cursor-pointer"
-              onClick={() => setActive(nav.title)}
+              onClick={() => setActive(nav.id)}
             >
               <a 
                 href={`#${nav.id}`} 
                 className={`text-[15px] font-medium transition-colors duration-300 ${
-                  active === nav.title ? "text-accent font-bold" : "text-text-secondary group-hover:text-text-primary"
+                  active === nav.id ? "text-accent font-bold" : "text-text-secondary group-hover:text-text-primary"
                 }`}
+                aria-current={active === nav.id ? 'location' : undefined}
               >
                 {nav.title}
               </a>
-              {/* Hover Underline Animation */}
-              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full ${active === nav.title ? "w-full" : ""}`}></span>
+              {active === nav.id ? (
+                <motion.span layoutId="active-nav-link" className="absolute -bottom-1 left-0 h-0.5 w-full bg-accent" transition={{ type: 'spring', stiffness: 380, damping: 30 }} />
+              ) : (
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-accent transition-all duration-300 group-hover:w-full" />
+              )}
             </li>
           ))}
         </ul>
@@ -75,8 +80,11 @@ const Navbar = () => {
           <ThemeToggle />
           
           {/* Mobile menu toggle */}
-          <div
-            className="md:hidden w-[28px] h-[28px] cursor-pointer text-text-primary flex items-center justify-center"
+          <button
+            type="button"
+            aria-label={toggle ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={toggle}
+            className="md:hidden flex h-7 w-7 items-center justify-center text-text-primary"
             onClick={() => setToggle(!toggle)}
           >
             <motion.div
@@ -93,7 +101,7 @@ const Navbar = () => {
                 </svg>
               )}
             </motion.div>
-          </div>
+          </button>
         </div>
 
         {/* Mobile menu drop down */}
@@ -103,18 +111,17 @@ const Navbar = () => {
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className={`${
             !toggle ? "pointer-events-none" : "pointer-events-auto"
-          } p-6 glass absolute top-full mt-4 right-0 min-w-[240px] z-10 rounded-2xl shadow-2xl border border-bg-tertiary md:hidden`}
+          } p-6 glass absolute top-full mt-4 right-0 min-w-60 z-10 rounded-2xl shadow-2xl border border-bg-tertiary md:hidden`}
         >
           <ul className="list-none flex justify-end items-start flex-1 flex-col gap-6">
             {NAV_LINKS.map((nav) => (
               <li
                 key={nav.id}
                 className={`font-medium cursor-pointer text-[16px] w-full border-b border-bg-tertiary pb-2 transition-colors duration-300 ${
-                  active === nav.title ? "text-accent pl-2 border-accent" : "text-text-secondary hover:text-text-primary"
+                  active === nav.id ? "text-accent pl-2 border-accent" : "text-text-secondary hover:text-text-primary"
                 }`}
                 onClick={() => {
-                  setToggle(!toggle);
-                  setActive(nav.title);
+                  setToggle(false);
                 }}
               >
                 <a href={`#${nav.id}`} className="block w-full">{nav.title}</a>

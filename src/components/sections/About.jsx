@@ -2,25 +2,20 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { PERSONAL_INFO } from '../../constants';
 import CoderIllustration from '../CoderIllustration';
+import { scrollReveal } from '../../utils/scrollReveal';
 
 const About = () => {
   return (
     <section id="about" className="section-padding section-wash section-wash--peach relative z-0 mx-auto max-w-7xl">
       <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true, amount: 0.2 }}
+          {...scrollReveal(0, 22)}
         >
           <CoderIllustration variant="about" />
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true, amount: 0.2 }}
+          {...scrollReveal(0.12, 22)}
         >
           <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-accent">About me</p>
           <h2 className="mb-5 text-4xl font-black leading-tight tracking-tight text-text-primary md:text-5xl">

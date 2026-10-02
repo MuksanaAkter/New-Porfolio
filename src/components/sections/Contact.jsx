@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { PERSONAL_INFO } from '../../constants';
+import { scrollReveal } from '../../utils/scrollReveal';
 
 const Contact = () => {
   const formRef = useRef();
@@ -32,14 +33,11 @@ const Contact = () => {
     <section id="contact" className="section-padding max-w-7xl mx-auto relative z-10">
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true }}
+          {...scrollReveal(0, 24)}
           className="lg:flex-1"
         >
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-[2px] bg-accent"></div>
+            <div className="w-12 h-0.5 bg-accent"></div>
             <p className="text-accent font-semibold tracking-widest uppercase text-sm md:text-base">
               Say Hello
             </p>
@@ -94,10 +92,7 @@ const Contact = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true }}
+          {...scrollReveal(0.14, 24)}
           className="lg:flex-[1.2] glass p-8 md:p-12 rounded-3xl"
         >
           <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-6">
