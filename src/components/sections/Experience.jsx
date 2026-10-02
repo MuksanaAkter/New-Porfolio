@@ -15,7 +15,7 @@ const ExperienceCard = ({ experience, index, isLast }) => (
     </div>
     
     {/* Card */}
-    <div className="hover-surface glass relative w-full overflow-hidden rounded-3xl border border-bg-tertiary p-6 shadow-xl transition-all duration-300 group-hover:-translate-y-1 md:p-8">
+    <div className="card-sweep hover-surface glass relative w-full overflow-hidden rounded-3xl border border-bg-tertiary p-6 shadow-xl transition-all duration-300 group-hover:-translate-y-1 md:p-8">
       <div className="absolute -top-10 -right-10 w-40 h-40 bg-linear-to-bl from-accent/20 to-purple-500/0 rounded-full blur-2xl -z-10 group-hover:scale-150 transition-transform duration-700"></div>
       
       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-6 gap-3">

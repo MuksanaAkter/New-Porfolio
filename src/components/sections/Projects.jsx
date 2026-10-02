@@ -18,7 +18,7 @@ const ProjectCard = ({ index, name, description, tags, source_code_link }) => {
         <h3 className="text-3xl md:text-5xl font-black text-text-primary tracking-tight mb-6">
           {name}
         </h3>
-        <div className="hover-surface glass relative z-10 rounded-3xl p-6 shadow-2xl md:p-8">
+        <div className="card-sweep hover-surface glass relative z-10 overflow-hidden rounded-3xl p-6 shadow-2xl md:p-8">
           <p className="text-text-secondary text-base md:text-lg leading-relaxed mb-6">
             {description}
           </p>

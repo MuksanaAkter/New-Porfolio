@@ -14,10 +14,9 @@ const Footer = () => {
         <motion.div
           className="site-footer__scanline"
           aria-hidden="true"
-          animate={reduceMotion ? undefined : { left: ['-35%', '100%'] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+          animate={reduceMotion ? { left: '0%', opacity: 0.4 } : { left: ['-35%', '100%'] }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 8, repeat: Infinity, ease: 'linear' }}
         />
-
         <div className="mx-auto max-w-7xl">
           <motion.div
             {...scrollReveal(0, 24)}
@@ -28,7 +27,7 @@ const Footer = () => {
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white/80"
+                className="relative mb-5 inline-flex items-center gap-2 overflow-hidden rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white/80"
               >
                 <span className="site-footer__availability-dot" /> Available for opportunities
               </motion.p>
@@ -44,7 +43,7 @@ const Footer = () => {
               href={`mailto:${PERSONAL_INFO.email}`}
               whileHover={reduceMotion ? undefined : { y: -4, scale: 1.025 }}
               whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-              className="site-footer__contact group inline-flex w-fit items-center gap-5 rounded-full bg-white px-6 py-4 text-sm font-bold text-zinc-950 shadow-xl shadow-black/20 sm:px-7"
+              className="site-footer__contact group relative inline-flex w-fit items-center gap-5 rounded-full bg-white px-6 py-4 text-sm font-bold text-zinc-950 shadow-xl shadow-black/20 sm:px-7"
             >
               <span>Let’s talk</span>
               <span className="site-footer__arrow grid size-9 place-items-center rounded-full bg-zinc-950 text-white transition-transform duration-300 group-hover:rotate-45" aria-hidden="true">↗</span>

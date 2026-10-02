@@ -12,7 +12,7 @@ const ProjectPreview = ({ name }) => {
       whileHover={reduceMotion ? undefined : { y: -6, scale: 1.012 }}
       transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
       viewport={{ once: true, amount: 0.1 }}
-      className={`project-preview project-preview--${kind} relative aspect-[1.38] w-full overflow-hidden border border-bg-tertiary`}
+      className={`card-sweep project-preview project-preview--${kind} relative aspect-[1.38] w-full overflow-hidden border border-bg-tertiary`}
     >
       <div className="project-preview__browser">
         <div className="project-preview__topbar">

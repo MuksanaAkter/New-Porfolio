@@ -37,11 +37,11 @@ const Hero = () => {
           </p>
           
           <div className="mt-8 flex flex-wrap items-center gap-4 sm:gap-6">
-            <a href="#projects" className="group inline-flex items-center gap-3 rounded-full bg-text-primary px-6 py-3.5 text-sm font-bold text-bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/20 sm:text-base">
+            <a href="#projects" className="card-sweep group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-transparent bg-text-primary px-6 py-3.5 text-sm font-bold text-bg-primary transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/20 sm:text-base">
                 View Projects
               <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">↗</span>
             </a>
-            <a href="#contact" className="group flex items-center gap-2 text-text-primary font-bold text-lg hover:text-accent transition-colors">
+            <a href="#contact" className="card-sweep group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-bg-tertiary bg-bg-primary/35 px-5 py-3.5 text-base font-bold text-text-primary transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/50 hover:bg-accent/5 hover:text-accent sm:text-lg">
               Contact Me
               <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

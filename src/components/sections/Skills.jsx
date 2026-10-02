@@ -4,7 +4,7 @@ import { SKILLS } from '../../constants';
 import { scrollReveal } from '../../utils/scrollReveal';
 
 const Skills = () => (
-  <section id="skills" className="section-padding section-wash section-wash--blue relative z-0 mx-auto w-full max-w-7xl">
+  <section id="skills" className="section-padding section-wash section-wash--skills relative z-0 mx-auto w-full max-w-7xl">
     <motion.div
       {...scrollReveal(0, 18)}
       className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"

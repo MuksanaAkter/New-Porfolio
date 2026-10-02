@@ -95,6 +95,21 @@ body {
   background: linear-gradient(105deg, color-mix(in srgb, #7096cf 10%, transparent), transparent 74%);
 }
 
+.section-wash--skills::before {
+  background:
+    radial-gradient(ellipse at 7% 16%, #c7eee2 0%, transparent 48%),
+    radial-gradient(ellipse at 94% 88%, #ffd9c5 0%, transparent 46%),
+    linear-gradient(112deg, #edf8f4 0%, #e9efff 52%, #fff3e8 100%);
+  opacity: 1;
+}
+
+.dark .section-wash--skills::before {
+  background:
+    radial-gradient(ellipse at 7% 16%, #17312d 0%, transparent 44%),
+    radial-gradient(ellipse at 94% 88%, #30251f 0%, transparent 42%),
+    linear-gradient(112deg, #101819 0%, #151c26 54%, #201d1a 100%);
+}
+
 .section-wash--lilac::before {
   background: linear-gradient(115deg, color-mix(in srgb, #ae8cdc 10%, transparent), transparent 73%);
 }
@@ -109,10 +124,16 @@ body {
 
 .section-wash--opaque::before {
   background:
-    radial-gradient(ellipse at 12% 18%, color-mix(in srgb, #dbeafe 34%, var(--bg-primary)), transparent 52%),
-    radial-gradient(ellipse at 88% 82%, color-mix(in srgb, #d1fae5 38%, var(--bg-primary)), transparent 58%),
-    linear-gradient(112deg, color-mix(in srgb, var(--bg-primary) 96%, #dbeafe), color-mix(in srgb, var(--bg-primary) 94%, #d1fae5));
+    radial-gradient(ellipse at 8% 8%, #bcebdc 0%, transparent 52%),
+    radial-gradient(ellipse at 96% 96%, #ffd8c3 0%, transparent 49%),
+    linear-gradient(112deg, #e9f5ef 0%, #e8effb 54%, #fff0e5 100%);
   opacity: 1;
+}
+
+.dark .section-wash--opaque::before {
+  background:
+    linear-gradient(118deg, #111a28 0%, #132a29 54%, #192335 100%),
+    linear-gradient(25deg, color-mix(in srgb, #58bba3 12%, transparent), transparent 62%);
 }
 
 * {
@@ -503,25 +524,31 @@ a, button {
   transform: scale(1.15);
 }
 
-.expertise-card::after {
+.card-sweep::after {
   position: absolute;
   z-index: 2;
-  inset: -1px;
-  padding: 1px;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 2px;
   content: '';
   pointer-events: none;
-  border-radius: inherit;
-  background: conic-gradient(from 0deg, transparent 0deg 270deg, color-mix(in srgb, var(--accent) 25%, transparent) 300deg, var(--accent) 326deg, color-mix(in srgb, #8ee4c2 75%, white) 340deg, transparent 360deg);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: card-orbit 5s linear infinite;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 76%, white), #b6f2d8, transparent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 48%, transparent);
+  offset-path: inset(1px round var(--sweep-radius, 22px));
+  offset-anchor: center;
+  offset-rotate: auto;
+  animation: card-perimeter-sweep 6s linear infinite;
   animation-delay: var(--card-scan-delay, 0s);
   opacity: .9;
 }
 
-@keyframes card-orbit {
-  to { transform: rotate(1turn); }
+.expertise-card { --sweep-radius: 8px; }
+.project-preview { --sweep-radius: 4px; }
+
+@keyframes card-perimeter-sweep {
+  to { offset-distance: 100%; }
 }
 
 .site-footer {
@@ -534,6 +561,18 @@ a, button {
   background: linear-gradient(118deg, #132529, #183739 58%, #28382c);
 }
 
+.site-footer__scanline {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: -35%;
+  width: 35%;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, #9fe3bb, #f0c58b, transparent);
+  box-shadow: 0 0 20px #9fe3bb80;
+}
+
 .site-footer__cta::before {
   position: absolute;
   z-index: -1;
@@ -542,17 +581,6 @@ a, button {
   background-image: linear-gradient(120deg, transparent 25%, #ffffff08 25.1%, transparent 25.4%, transparent 68%, #ffffff08 68.1%, transparent 68.4%);
   background-size: 100% 100%;
   opacity: .6;
-}
-
-.site-footer__scanline {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: -35%;
-  width: 35%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #9fe3bb, #f0c58b, transparent);
-  box-shadow: 0 0 20px #9fe3bb80;
 }
 
 .site-footer__accent {
@@ -707,7 +735,7 @@ a, button {
   .project-preview,
   .project-preview__browser { transition: none; }
 
-  .expertise-card::after { animation: none; }
+  .card-sweep::after { animation: none; }
 
   .skill-marquee__viewport { overflow: visible; mask-image: none; }
   .skill-marquee__track { width: 100%; animation: none; flex-wrap: wrap; }

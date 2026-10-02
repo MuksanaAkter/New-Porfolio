@@ -93,7 +93,7 @@ const Contact = () => {
 
         <motion.div
           {...scrollReveal(0.14, 24)}
-          className="lg:flex-[1.2] glass p-8 md:p-12 rounded-3xl"
+          className="card-sweep relative overflow-hidden rounded-3xl border border-bg-tertiary glass p-8 md:p-12 lg:flex-[1.2]"
         >
           <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
@@ -135,7 +135,7 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="mt-4 bg-text-primary py-4 px-8 rounded-xl text-bg-primary font-bold text-lg hover:scale-[1.02] transition-transform duration-300 w-full"
+              className="relative mt-4 w-full rounded-xl bg-text-primary px-8 py-4 text-lg font-bold text-bg-primary transition-transform duration-300 hover:scale-[1.02]"
             >
               {loading ? "Sending..." : "Send Message"}
             </button>
